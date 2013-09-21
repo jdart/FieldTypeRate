@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * ProcessWire Rate Fieldtype
+ *
+ * Fieldtype that gives a simple star rating on your website.
+ *
+ * by @jonathandart
+ * 
+ * ProcessWire 2.x 
+ * Copyright (C) 2010 by Ryan Cramer 
+ * Licensed under GNU/GPL v2, see LICENSE.TXT
+ * 
+ * http://www.processwire.com
+ * http://www.ryancramer.com
+ *
+ */
+
 Class RateHelper Extends WireData {
 
 	protected $page = null;
