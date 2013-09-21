@@ -1,0 +1,4 @@
+FieldTypeRate
+=============
+
+FieldTypeRate
