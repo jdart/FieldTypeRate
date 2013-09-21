@@ -80,7 +80,7 @@ $('#<?php echo $id ?>').raty({
 			addScript('FieldtypeRate/raty/lib/jquery.raty.min.js', $root);
 			docReady($js);
 		} else {
-			$assets = "<script src='".$root."'FieldtypeRate/raty/lib/jquery.raty.min.js' type='text/javascript'></script>";
+			$assets = "<script src='{$root}FieldtypeRate/raty/lib/jquery.raty.min.js' type='text/javascript'></script>";
 			$out = $assets.$out.$js;
 		}
 
