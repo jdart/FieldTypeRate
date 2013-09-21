@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * An Inputfield for handling XHTML "textarea" form inputs
+ *
+ */
+class InputfieldRate extends Inputfield {
+
+	public static function getModuleInfo() {
+
+		return array(
+			'title' => __('Star Rating', __FILE__), // Module Title
+			'summary' => __('Star Rating', __FILE__), // Module Summary
+			'version' => 100,
+		);
+	}
+
+	public function __construct() {
+
+		require_once dirname(__FILE__) . '/RateHelper.php'; 
+		parent::__construct();
+	}
+
+	public function ___render() {
+
+		$attrs = $this->getAttributes();
+		
+		$value = $attrs['value']; 
+
+		ob_start();
+?>
+<?php if ( ! $value->vote_count): ?>
+	<p>There have not been any votes yet.</p>
+<?php else: ?>
+	<?php echo sprintf('There have been <b>%d</b> votes, and the average score is <b>%01.1f</b>.', $value->vote_count, $value->getScore()) ?>
+	<div style="margin-top: 1em;">
+		<input id="<?php echo $this->name ?>_reset" type="checkbox" name="<?php echo $this->name ?>_reset">
+		<label for="<?php echo $this->name ?>_reset" style="display: inline">Reset votes?</label>
+	</div>
+<?php endif ?>
+
+		<?php
+		return ob_get_clean(); 
+	}
+
+	public function setAttribute($key, $value) {
+
+		if($key == 'value' && !$value instanceof RateHelper && !is_null($value)) {
+			throw new WireException("This input only accepts a RateHelper for it's value"); 
+		}
+
+		return parent::setAttribute($key, $value); 
+	}
+
+	public function ___renderValue() {
+
+		return $this->attr('value');
+	}
+
+	public function ___processInput(WireInputData $input) {
+
+		$name = $this->attr('name'); 
+		$RateHelper = $this->attr('value');
+		$reset_name = $name.'_reset';
+
+		if ( ! empty($input->$reset_name)) {
+			$RateHelper->vote_log = "";
+			$RateHelper->vote_count = 0;
+			$RateHelper->vote_sum = 0;
+		}
+
+		return $this;
+	}
+}
