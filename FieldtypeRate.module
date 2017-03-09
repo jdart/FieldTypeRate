@@ -24,7 +24,7 @@ class FieldtypeRate extends Fieldtype {
 
 		return array(
 			'title' => 'Rate',
-			'version' => 100,
+			'version' => 200,
 			'summary' => 'Field that stores ratings',
 			'installs' => array('InputfieldRate')
 		);
@@ -63,7 +63,6 @@ class FieldtypeRate extends Fieldtype {
 		// get a blank RateHelper instance
 		$RateHelper = $this->getBlankValue($page, $field, $value);
 		
-		$PollApe->settings = $value['settings'];
 		$RateHelper->vote_log = $value['vote_log'];
 		$RateHelper->vote_count = $value['vote_count'];
 		$RateHelper->vote_sum = $value['vote_sum'];
