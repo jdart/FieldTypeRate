@@ -1,5 +1,5 @@
 
-# FieldTypeRate 0.0.1
+# FieldTypeRate 0.0.2
 
 ## About FieldTypeRate
 
